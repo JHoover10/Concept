@@ -28,6 +28,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
-          build-dir: '../../home/runner/work/Concept/Concept/Concept/Concept/publishoutput/'
       with:
-          args: deploy --prod
+          args: deploy --dir=../../home/runner/work/Concept/Concept/Concept/Concept/publishoutput/ --prod
