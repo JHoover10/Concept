@@ -10,7 +10,7 @@
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
-                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                        <MudListItem OnClick="@(async () => await ConceptPressed(ViewModel.EasyConcepts[index]))">
                             <MudText Align="Align.Center">@(index + 1). @(ViewModel.EasyConcepts[index])</MudText>
                         </MudListItem>
 
@@ -33,7 +33,7 @@
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
-                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                        <MudListItem OnClick="@(async () => await ConceptPressed(ViewModel.MediumConcepts[index]))">
                             <MudText Align="Align.Center">@(index + 4). @(ViewModel.MediumConcepts[index])</MudText>
                         </MudListItem>
 
@@ -56,7 +56,7 @@
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
-                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                        <MudListItem OnClick="@(async () => await ConceptPressed(ViewModel.HardConcepts[index]))">
                             <MudText Align="Align.Center">@(index + 7). @(ViewModel.HardConcepts[index])</MudText>
                         </MudListItem>
 
@@ -78,10 +78,6 @@
     <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="CreateCard">Create Card</MudButton>
 </MudPaper>
 
-@*<footer>
-    <SyncStatus />
-</footer>*@
-
 @code {
     [CascadingParameter]
     public List<ConceptCategory> ConceptCategories { get; set; }
@@ -91,10 +87,8 @@
         await ViewModel.UpdateConceptsAsync(ConceptCategories);
     }
 
-    private Task ConceptPressed(int index)
+    private async Task ConceptPressed(string searchTerm)
     {
-        //await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
-
-        return Task.CompletedTask;
+        await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
     }
 }
