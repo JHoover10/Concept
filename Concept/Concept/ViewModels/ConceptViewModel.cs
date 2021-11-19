@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Concept.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.Net.Http.Json;
@@ -73,7 +74,7 @@ namespace Concept.ViewModels
             }
         }
 
-        public async Task UpdateConceptsAsync()
+        public async Task UpdateConceptsAsync(List<ConceptCategory> conceptCategories)
         {
 
             List<string> concepts = new List<string>(_maxConceptsPerDifficulty * 3);

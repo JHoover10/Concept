@@ -83,12 +83,12 @@
 </footer>*@
 
 @code {
-    //[CascadingParameter]
-    //public Settings Layout { get; set; }
+    [CascadingParameter]
+    public List<ConceptCategory> ConceptCategories { get; set; }
 
     async Task CreateCard()
     {
-        await ViewModel.UpdateConceptsAsync();
+        await ViewModel.UpdateConceptsAsync(ConceptCategories);
     }
 
     private Task ConceptPressed(int index)

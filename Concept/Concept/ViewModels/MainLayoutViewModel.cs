@@ -33,6 +33,24 @@ namespace Concept.ViewModels
                 FilePath = "default.json",
                 Enabled = true,
             });
+
+            _conceptCategories.Add(new ConceptCategory()
+            {
+                DisplayName = "Pokemon",
+                SubCategories = new List<ConceptCategory>()
+                {
+                    new ConceptCategory() 
+                    {
+                        DisplayName = "Generation 1",
+                        FilePath = "pokemon/generation1.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 2",
+                        FilePath = "pokemon/generation2.json"
+                    }
+                }
+            });
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
