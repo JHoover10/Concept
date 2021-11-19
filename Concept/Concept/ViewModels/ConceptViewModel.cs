@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
 
-namespace Concept.ViewModel
+namespace Concept.ViewModels
 {
     public class ConceptViewModel : INotifyPropertyChanged
     {
@@ -15,8 +15,8 @@ namespace Concept.ViewModel
         public string ConceptOne
         {
             get { return _conceptOne; }
-            private set 
-            { 
+            private set
+            {
                 _conceptOne = value;
                 OnPropertyChanged();
             }
@@ -71,7 +71,7 @@ namespace Concept.ViewModel
                 _mediumConcepts.Add(string.Empty);
                 _hardConcepts.Add(string.Empty);
             }
-        }        
+        }
 
         public async Task UpdateConceptsAsync()
         {
