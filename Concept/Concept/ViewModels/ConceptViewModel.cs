@@ -93,11 +93,22 @@ namespace Concept.ViewModels
             UpdateConcepts(HardConcepts, conceptsToChooseFrom, "Hard");
         }
 
-        private void UpdateConcepts(List<string> easyConcepts, Dictionary<string, List<string>> conceptsToChooseFrom, string difficulty)
+        private void UpdateConcepts(List<string> concepts, Dictionary<string, List<string>> conceptsToChooseFrom, string difficulty)
         {
             Random random = new Random();
             List<int> conceptIndexs = new List<int>(_maxConceptsPerDifficulty);
             int numberOfConcepts = conceptsToChooseFrom[difficulty].Count();
+
+            //TODO: Find better way to handle this edge case
+            if (numberOfConcepts < _maxConceptsPerDifficulty)
+            {
+                for (int i = 0; i < concepts.Count(); i++)
+                {
+                    concepts[i] = string.Empty;
+                }
+
+                return;
+            }                
 
             do
             {
@@ -108,9 +119,9 @@ namespace Concept.ViewModels
 
             } while (conceptIndexs.Count() < _maxConceptsPerDifficulty);
 
-            for (int i = 0; i < easyConcepts.Count(); i++)
+            for (int i = 0; i < concepts.Count(); i++)
             {
-                easyConcepts[i] = conceptsToChooseFrom[difficulty][conceptIndexs[i]].ToString();
+                concepts[i] = conceptsToChooseFrom[difficulty][conceptIndexs[i]].ToString();
             }
         }
 
