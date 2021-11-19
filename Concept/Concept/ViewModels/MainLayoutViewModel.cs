@@ -22,7 +22,17 @@ namespace Concept.ViewModels
 
         public MainLayoutViewModel()
         {
+            AddConceptCategories();
+        }
 
+        private void AddConceptCategories()
+        {
+            _conceptCategories.Add(new ConceptCategory()
+            {
+                DisplayName = "Default",
+                FilePath = "default.json",
+                Enabled = true,
+            });
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
