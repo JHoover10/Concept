@@ -16,17 +16,6 @@
         </CascadingValue>
         <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
-                @*<MudListItem>
-                    <MudSwitch @bind-Checked="true" Color="Color.Primary" Label="Default" />
-                </MudListItem>
-                <MudDivider />*@
-                @*<MudListItem>
-                    <MudSwitch @bind-Checked="@settings.MySwitch" Color="Color.Primary" Label="My Concepts" />
-                </MudListItem>
-                <MudDivider />*@
-                @*<MudListItem>
-                    <MudSwitch @bind-Checked="@settings.YourSwitch" Color="Color.Primary" Label="Your Concepts" />
-                </MudListItem>*@
                 @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
                 {
                     int index = i;
