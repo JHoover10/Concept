@@ -20,17 +20,6 @@
                             <MudDivider />
                         }
                     }
-                    @*<MudListItem OnClick="@(async () => await ConceptPressed(0))">
-                        <MudText Align="Align.Center">1. @ViewModel.ConceptOne</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(1))">
-                        <MudText Align="Align.Center">2. @Concepts[1]</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(2))">
-                        <MudText Align="Align.Center">3. @Concepts[2]</MudText>
-                    </MudListItem>*@
                 </MudList>
             </MudPaper>
         </MudItem>
@@ -95,35 +84,16 @@
 </footer>*@
 
 @code {
-    private string[] Concepts = new string[9];
-
     //[CascadingParameter]
     //public Settings Layout { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        //ViewModel.PropertyChanged += async (sender, e) => {
-        //    await InvokeAsync(() =>
-        //    {
-        //        StateHasChanged();
-        //    });
-        //};
-        //await base.OnInitializedAsync();
-    }
-
     async Task CreateCard()
     {
-        //HttpResponseMessage responseMessage = await Http.PostAsJsonAsync("Concept/GetConcepts", Layout);
-        //Concepts = await responseMessage.Content.ReadFromJsonAsync<string[]>();
-        //Concepts = await LocalConceptStore.GetConceptsAsync(Layout);
-
         await ViewModel.UpdateConceptsAsync();
     }
 
     private Task ConceptPressed(int index)
     {
-        string searchTerm = Concepts[index];
-
         //await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
 
         return Task.CompletedTask;

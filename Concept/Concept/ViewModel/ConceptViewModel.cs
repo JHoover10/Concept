@@ -75,28 +75,21 @@ namespace Concept.ViewModel
 
         public async Task UpdateConceptsAsync()
         {
-            try
-            {
-                List<string> concepts = new List<string>(_maxConceptsPerDifficulty * 3);
 
-                Dictionary<string, List<string>> conceptsToChooseFrom = new Dictionary<string, List<string>>()
+            List<string> concepts = new List<string>(_maxConceptsPerDifficulty * 3);
+
+            Dictionary<string, List<string>> conceptsToChooseFrom = new Dictionary<string, List<string>>()
             {
                 {"Easy", new List<string>() },
                 {"Medium", new List<string>() },
                 {"Hard", new List<string>() },
             };
 
-                await AddConceptsAsync(conceptsToChooseFrom);
+            await AddConceptsAsync(conceptsToChooseFrom);
 
-                UpdateConcepts(EasyConcepts, conceptsToChooseFrom, "Easy");
-                UpdateConcepts(MediumConcepts, conceptsToChooseFrom, "Medium");
-                UpdateConcepts(HardConcepts, conceptsToChooseFrom, "Hard");
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            UpdateConcepts(EasyConcepts, conceptsToChooseFrom, "Easy");
+            UpdateConcepts(MediumConcepts, conceptsToChooseFrom, "Medium");
+            UpdateConcepts(HardConcepts, conceptsToChooseFrom, "Hard");
         }
 
         private void UpdateConcepts(List<string> easyConcepts, Dictionary<string, List<string>> conceptsToChooseFrom, string difficulty)
