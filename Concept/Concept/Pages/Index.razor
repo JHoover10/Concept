@@ -1,9 +1,102 @@
 ﻿@page "/"
+@inject IJSRuntime JSRuntime
 
-<PageTitle>Index</PageTitle>
+<MudGrid Style="padding: 20px">
+    <MudItem xs="9">
+        <MudItem xs="12">
+            <MudPaper Elevation="2">
+                <MudList Clickable="true">
+                    <MudListItem OnClick="@(async () => await ConceptPressed(0))">
+                        <MudText Align="Align.Center">1. @Concepts[0]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(1))">
+                        <MudText Align="Align.Center">2. @Concepts[1]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(2))">
+                        <MudText Align="Align.Center">3. @Concepts[2]</MudText>
+                    </MudListItem>
+                </MudList>
+            </MudPaper>
+        </MudItem>
+    </MudItem>
+    <MudItem xs="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentSatisfied" Size="Size.Small" /></MudPaper>
+    </MudItem>
+    <MudItem xs="9">
+        <MudItem xs="12">
+            <MudPaper Elevation="2">
+                <MudList Clickable="true">
+                    <MudListItem OnClick="@(async () => await ConceptPressed(3))">
+                        <MudText Align="Align.Center">4. @Concepts[3]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(4))">
+                        <MudText Align="Align.Center">5. @Concepts[4]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(5))">
+                        <MudText Align="Align.Center">6. @Concepts[5]</MudText>
+                    </MudListItem>
+                </MudList>
+            </MudPaper>
+        </MudItem>
+    </MudItem>
+    <MudItem xs="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentNeutral" Size="Size.Small" /></MudPaper>
+    </MudItem>
+    <MudItem xs="9">
+        <MudItem xs="12">
+            <MudPaper Elevation="2">
+                <MudList Clickable="true">
+                    <MudListItem OnClick="@(async () => await ConceptPressed(6))">
+                        <MudText Align="Align.Center">7. @Concepts[6]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(7))">
+                        <MudText Align="Align.Center">8. @Concepts[7]</MudText>
+                    </MudListItem>
+                    <MudDivider />
+                    <MudListItem OnClick="@(async () => await ConceptPressed(8))">
+                        <MudText Align="Align.Center">9. @Concepts[8]</MudText>
+                    </MudListItem>
+                </MudList>
+            </MudPaper>
+        </MudItem>
+    </MudItem>
+    <MudItem xs="3">
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentDissatisfied" Size="Size.Small" /></MudPaper>
+    </MudItem>
+</MudGrid>
 
-<h1>Hello, world!</h1>
+<MudPaper Elevation="0" Class="d-flex justify-center" Style="padding-left: 20px; padding-right: 20px">
+    <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="CreateCard">Create Card</MudButton>
+</MudPaper>
 
-Welcome to your new app.
+@*<footer>
+    <SyncStatus />
+</footer>*@
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    private string[] Concepts = new string[9];
+
+    //[CascadingParameter]
+    //public Settings Layout { get; set; }
+
+    async Task CreateCard()
+    {
+        //HttpResponseMessage responseMessage = await Http.PostAsJsonAsync("Concept/GetConcepts", Layout);
+        //Concepts = await responseMessage.Content.ReadFromJsonAsync<string[]>();
+        //Concepts = await LocalConceptStore.GetConceptsAsync(Layout);
+    }
+
+    private Task ConceptPressed(int index)
+    {
+        string searchTerm = Concepts[index];
+
+        //await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
+
+        return Task.CompletedTask;
+    }
+}
