@@ -1,13 +1,27 @@
 ﻿@page "/"
+@using Concept.ViewModel
 @inject IJSRuntime JSRuntime
+@inject ConceptViewModel ViewModel
 
 <MudGrid Style="padding: 20px">
     <MudItem xs="9">
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
-                    <MudListItem OnClick="@(async () => await ConceptPressed(0))">
-                        <MudText Align="Align.Center">1. @Concepts[0]</MudText>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        int index = i;
+                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                            <MudText Align="Align.Center">@(index + 1). @(ViewModel.EasyConcepts[index])</MudText>
+                        </MudListItem>
+
+                        if (index < 3)
+                        {
+                            <MudDivider />
+                        }
+                    }
+                    @*<MudListItem OnClick="@(async () => await ConceptPressed(0))">
+                        <MudText Align="Align.Center">1. @ViewModel.ConceptOne</MudText>
                     </MudListItem>
                     <MudDivider />
                     <MudListItem OnClick="@(async () => await ConceptPressed(1))">
@@ -16,7 +30,7 @@
                     <MudDivider />
                     <MudListItem OnClick="@(async () => await ConceptPressed(2))">
                         <MudText Align="Align.Center">3. @Concepts[2]</MudText>
-                    </MudListItem>
+                    </MudListItem>*@
                 </MudList>
             </MudPaper>
         </MudItem>
@@ -28,17 +42,18 @@
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
-                    <MudListItem OnClick="@(async () => await ConceptPressed(3))">
-                        <MudText Align="Align.Center">4. @Concepts[3]</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(4))">
-                        <MudText Align="Align.Center">5. @Concepts[4]</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(5))">
-                        <MudText Align="Align.Center">6. @Concepts[5]</MudText>
-                    </MudListItem>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        int index = i;
+                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                            <MudText Align="Align.Center">@(index + 4). @(ViewModel.MediumConcepts[index])</MudText>
+                        </MudListItem>
+
+                        if (index < 3)
+                        {
+                            <MudDivider />
+                        }
+                    }
                 </MudList>
             </MudPaper>
         </MudItem>
@@ -50,17 +65,18 @@
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
-                    <MudListItem OnClick="@(async () => await ConceptPressed(6))">
-                        <MudText Align="Align.Center">7. @Concepts[6]</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(7))">
-                        <MudText Align="Align.Center">8. @Concepts[7]</MudText>
-                    </MudListItem>
-                    <MudDivider />
-                    <MudListItem OnClick="@(async () => await ConceptPressed(8))">
-                        <MudText Align="Align.Center">9. @Concepts[8]</MudText>
-                    </MudListItem>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        int index = i;
+                        <MudListItem OnClick="@(async () => await ConceptPressed(index))">
+                            <MudText Align="Align.Center">@(index + 7). @(ViewModel.HardConcepts[index])</MudText>
+                        </MudListItem>
+
+                        if (index < 3)
+                        {
+                            <MudDivider />
+                        }
+                    }
                 </MudList>
             </MudPaper>
         </MudItem>
@@ -84,11 +100,24 @@
     //[CascadingParameter]
     //public Settings Layout { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        //ViewModel.PropertyChanged += async (sender, e) => {
+        //    await InvokeAsync(() =>
+        //    {
+        //        StateHasChanged();
+        //    });
+        //};
+        //await base.OnInitializedAsync();
+    }
+
     async Task CreateCard()
     {
         //HttpResponseMessage responseMessage = await Http.PostAsJsonAsync("Concept/GetConcepts", Layout);
         //Concepts = await responseMessage.Content.ReadFromJsonAsync<string[]>();
         //Concepts = await LocalConceptStore.GetConceptsAsync(Layout);
+
+        await ViewModel.UpdateConceptsAsync();
     }
 
     private Task ConceptPressed(int index)
