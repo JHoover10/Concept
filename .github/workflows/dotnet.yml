@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
 
-variables:
+env:
   buildConfiguration: 'Release'
   buildOutput: '.output' # Output directory for publish
 
@@ -25,7 +25,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Publish
-      run: dotnet publish -c Release --no-build -o $(buildOutput)
+      run: dotnet publish -c Release --no-build -o $(env.buildOutput)
     - name: Perform a Pester test from the Tests.ps1 file
       shell: pwsh
       run: |
@@ -36,5 +36,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
       with:
-          args: deploy --dir $(buildOutput)/wwwroot --prod
+          args: deploy --dir $(env.buildOutput)/wwwroot --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]' 
