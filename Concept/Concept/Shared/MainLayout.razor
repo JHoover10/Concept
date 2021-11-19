@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+@inject MainLayoutViewModel ViewModel
+
 <MudThemeProvider />
 
 <MudLayout>
@@ -9,7 +11,9 @@
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
     </MudAppBar>
     <MudMainContent>
+        <CascadingValue Value="@ViewModel.ConceptCategories">
             @Body
+        </CascadingValue>
         <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
                 @*<MudListItem>
@@ -23,6 +27,14 @@
                 @*<MudListItem>
                     <MudSwitch @bind-Checked="@settings.YourSwitch" Color="Color.Primary" Label="Your Concepts" />
                 </MudListItem>*@
+                @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
+                {
+                    int index = i;
+
+                    <MudListItem>
+                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
+                    </MudListItem>
+                }
             </MudPaper>
         </MudOverlay>
     </MudMainContent>
@@ -30,11 +42,6 @@
 
 @code {
     private bool isVisible;
-
-    //public Settings settings = new Settings()
-    //{
-    //    DefaultSwitch = true
-    //};
 
     public void OpenSettings()
     {

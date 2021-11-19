@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Concept.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
 
-namespace Concept.ViewModel
+namespace Concept.ViewModels
 {
     public class ConceptViewModel : INotifyPropertyChanged
     {
@@ -15,8 +16,8 @@ namespace Concept.ViewModel
         public string ConceptOne
         {
             get { return _conceptOne; }
-            private set 
-            { 
+            private set
+            {
                 _conceptOne = value;
                 OnPropertyChanged();
             }
@@ -71,9 +72,9 @@ namespace Concept.ViewModel
                 _mediumConcepts.Add(string.Empty);
                 _hardConcepts.Add(string.Empty);
             }
-        }        
+        }
 
-        public async Task UpdateConceptsAsync()
+        public async Task UpdateConceptsAsync(List<ConceptCategory> conceptCategories)
         {
 
             List<string> concepts = new List<string>(_maxConceptsPerDifficulty * 3);
@@ -85,7 +86,7 @@ namespace Concept.ViewModel
                 {"Hard", new List<string>() },
             };
 
-            await AddConceptsAsync(conceptsToChooseFrom);
+            await AddConceptsAsync(conceptsToChooseFrom, conceptCategories);
 
             UpdateConcepts(EasyConcepts, conceptsToChooseFrom, "Easy");
             UpdateConcepts(MediumConcepts, conceptsToChooseFrom, "Medium");
@@ -113,14 +114,24 @@ namespace Concept.ViewModel
             }
         }
 
-        private async Task AddConceptsAsync(Dictionary<string, List<string>> conceptsToChooseFrom)
+        private async Task AddConceptsAsync(Dictionary<string, List<string>> conceptsToChooseFrom, List<ConceptCategory> conceptCategories)
         {
-            HttpResponseMessage? responseMessage = await _httpClient.GetAsync("data/default.json");
-            JObject concepts = JsonConvert.DeserializeObject<JObject>(await responseMessage.Content.ReadAsStringAsync());
+            foreach (var item in conceptCategories)
+            {
+                if (item.Enabled && (item.SubCategories == null || !item.SubCategories.Any()))
+                {
+                    HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/{item.FilePath}");
+                    JObject concepts = JsonConvert.DeserializeObject<JObject>(await responseMessage.Content.ReadAsStringAsync());
 
-            conceptsToChooseFrom["Easy"].AddRange(concepts["Easy"].ToObject<List<string>>());
-            conceptsToChooseFrom["Medium"].AddRange(concepts["Medium"].ToObject<List<string>>());
-            conceptsToChooseFrom["Hard"].AddRange(concepts["Hard"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Easy"].AddRange(concepts["Easy"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Medium"].AddRange(concepts["Medium"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Hard"].AddRange(concepts["Hard"].ToObject<List<string>>());
+                }
+                else if (item.Enabled && item.SubCategories != null && item.SubCategories.Any())
+                {
+                    await AddConceptsAsync(conceptsToChooseFrom, item.SubCategories);
+                }
+            }
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
