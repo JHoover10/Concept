@@ -25,7 +25,9 @@ jobs:
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master
       env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
+          build-dir: './publishoutput'
       with:
-          args: deploy --dir=build --prod
+          args: deploy --prod
