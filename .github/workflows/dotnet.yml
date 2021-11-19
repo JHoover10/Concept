@@ -26,14 +26,10 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Publish
       run: dotnet publish -c Release --no-build -o publishoutput
-    - name: Perform a Pester test from the Tests.ps1 file
-      shell: pwsh
-      run: |
-          GCI -Recurse
     - name: Publish generated Blazor webassembly to Netlify
       uses: netlify/actions/cli@master
       env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
       with:
-          args: deploy --dir=publishoutput --prod --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN
+          args: deploy --dir=publishoutput/wwwroot --prod --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN
