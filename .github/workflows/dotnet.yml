@@ -3,11 +3,7 @@ name: .NET
 on:
   push:
     branches: [ main ]
-
-env:
-  buildConfiguration: 'Release'
-  buildOutput: '.output' # Output directory for publish
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,4 +28,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_API_ID }}
       with:
-          args: deploy --dir=publishoutput/wwwroot --prod --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN
+          args: deploy --dir=build --prod
