@@ -16,14 +16,32 @@
         </CascadingValue>
         <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
-                @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
-                {
-                    int index = i;
+                <MudList>
+                    @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
+                    {
+                        int index = i;
 
-                    <MudListItem>
-                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
-                    </MudListItem>
-                }
+                        if (ViewModel.ConceptCategories[index].SubCategories == null || !ViewModel.ConceptCategories[index].SubCategories.Any())
+                        {
+                            <MudListItem>
+                                <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
+                            </MudListItem>
+                        }
+                        else
+                        {
+                            <MudListItem InitiallyExpanded="false" >
+                                <ChildContent>
+                                    <MudSwitch StopClickPropagation="false" @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
+                                </ChildContent>                                                      
+                                <NestedList>
+                                    <MudListItem>
+                                        <MudSwitch StopClickPropagation="true" T="bool" Disabled="true" Color="Color.Primary" Label="Test" />
+                                    </MudListItem>
+                                </NestedList>                                                   
+                            </MudListItem>
+                        }                    
+                    }
+                </MudList>
             </MudPaper>
         </MudOverlay>
     </MudMainContent>
