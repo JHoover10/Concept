@@ -86,7 +86,7 @@ namespace Concept.ViewModels
                 {"Hard", new List<string>() },
             };
 
-            await AddConceptsAsync(conceptsToChooseFrom);
+            await AddConceptsAsync(conceptsToChooseFrom, conceptCategories);
 
             UpdateConcepts(EasyConcepts, conceptsToChooseFrom, "Easy");
             UpdateConcepts(MediumConcepts, conceptsToChooseFrom, "Medium");
@@ -114,14 +114,24 @@ namespace Concept.ViewModels
             }
         }
 
-        private async Task AddConceptsAsync(Dictionary<string, List<string>> conceptsToChooseFrom)
+        private async Task AddConceptsAsync(Dictionary<string, List<string>> conceptsToChooseFrom, List<ConceptCategory> conceptCategories)
         {
-            HttpResponseMessage? responseMessage = await _httpClient.GetAsync("data/default.json");
-            JObject concepts = JsonConvert.DeserializeObject<JObject>(await responseMessage.Content.ReadAsStringAsync());
+            foreach (var item in conceptCategories)
+            {
+                if (item.Enabled && (item.SubCategories == null || !item.SubCategories.Any()))
+                {
+                    HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/{item.FilePath}");
+                    JObject concepts = JsonConvert.DeserializeObject<JObject>(await responseMessage.Content.ReadAsStringAsync());
 
-            conceptsToChooseFrom["Easy"].AddRange(concepts["Easy"].ToObject<List<string>>());
-            conceptsToChooseFrom["Medium"].AddRange(concepts["Medium"].ToObject<List<string>>());
-            conceptsToChooseFrom["Hard"].AddRange(concepts["Hard"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Easy"].AddRange(concepts["Easy"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Medium"].AddRange(concepts["Medium"].ToObject<List<string>>());
+                    conceptsToChooseFrom["Hard"].AddRange(concepts["Hard"].ToObject<List<string>>());
+                }
+                else if (item.Enabled && item.SubCategories != null && item.SubCategories.Any())
+                {
+                    await AddConceptsAsync(conceptsToChooseFrom, item.SubCategories);
+                }
+            }
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
