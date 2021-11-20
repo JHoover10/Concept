@@ -1,5 +1,8 @@
 ﻿using Concept.Models;
+using Newtonsoft.Json;
 using System.ComponentModel;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
 
 namespace Concept.ViewModels
@@ -9,6 +12,7 @@ namespace Concept.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private List<ConceptCategory> _conceptCategories = new List<ConceptCategory>();
+        private readonly HttpClient _httpClient;
 
         public List<ConceptCategory> ConceptCategories
         {
@@ -20,37 +24,16 @@ namespace Concept.ViewModels
             }
         }
 
-        public MainLayoutViewModel()
+        public MainLayoutViewModel(HttpClient httpClient)
         {
-            AddConceptCategories();
+            _httpClient = httpClient;
         }
 
-        private void AddConceptCategories()
+        public async Task AddConceptCategories()
         {
-            _conceptCategories.Add(new ConceptCategory()
-            {
-                DisplayName = "Default",
-                FilePath = "default.json",
-                Enabled = true,
-            });
+            List<ConceptCategory> conceptCategories = await _httpClient.GetFromJsonAsync<List<ConceptCategory>>("data/conceptCategories.json");
 
-            _conceptCategories.Add(new ConceptCategory()
-            {
-                DisplayName = "Pokemon",
-                SubCategories = new List<ConceptCategory>()
-                {
-                    new ConceptCategory() 
-                    {
-                        DisplayName = "Generation 1",
-                        FilePath = "pokemon/generation1.json"
-                    },
-                    new ConceptCategory()
-                    {
-                        DisplayName = "Generation 2",
-                        FilePath = "pokemon/generation2.json"
-                    }
-                }
-            });
+            _conceptCategories.AddRange(conceptCategories);
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

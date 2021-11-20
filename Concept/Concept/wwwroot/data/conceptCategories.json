@@ -1,0 +1,112 @@
+[
+  {
+    "DisplayName": "Default",
+    "FilePath": "default.json",
+    "Enabled": true,
+    "SubCategories": null
+  },
+  {
+    "DisplayName": "Pokemon",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Generation 1",
+        "FilePath": "pokemon/generation1.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 2",
+        "FilePath": "pokemon/generation2.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 3",
+        "FilePath": "pokemon/generation3.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 4",
+        "FilePath": "pokemon/generation4.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 5",
+        "FilePath": "pokemon/generation5.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 6",
+        "FilePath": "pokemon/generation6.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 7",
+        "FilePath": "pokemon/generation7.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "Disney Movies",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "The Golden Era (1937 to 1942)",
+        "FilePath": "disneyMovies/theGoldenEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Wartime Era (1942 to 1949)",
+        "FilePath": "disneyMovies/theWartimeEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Silver Era (1950 to 1967)",
+        "FilePath": "disneyMovies/theSilverEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Bronze Era (1970 to 1977)",
+        "FilePath": "disneyMovies/theBronzeEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Dark Ages (1981 to 1988)",
+        "FilePath": "disneyMovies/theDarkAges.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Renaissance Era (1989 to 1999)",
+        "FilePath": "disneyMovies/theRenaissanceEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Experimental Era (1999 to 2008)",
+        "FilePath": "disneyMovies/theExperimentalEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "The Revival Era (2009 to Present)",
+        "FilePath": "disneyMovies/theRevivalEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  }
+]

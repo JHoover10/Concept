@@ -89,6 +89,7 @@
 
     private async Task ConceptPressed(string searchTerm)
     {
-        await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+            await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={searchTerm}");
     }
 }
