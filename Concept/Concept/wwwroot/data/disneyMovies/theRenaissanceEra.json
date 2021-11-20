@@ -1,0 +1,25 @@
+{
+  "Easy": [
+    "The Little Mermaid",
+    "Beauty and the Beast",
+    "Aladdin",
+    "A Goofy Movie",
+    "Pocahontas",
+    "Toy Story",
+    "James and the Giant Peach",
+    "The Hunchback of Notre Dame",
+    "Hercules",
+    "A Bug\u0027s Life",
+    "Toy Story 2"
+  ],
+  "Hard": [
+    "DuckTales the Movie: Treasure of the Lost Lamp",
+    "The Rescuers Down Under",
+    "The Nightmare Before Christmas",
+    "Mulan"
+  ],
+  "Medium": [
+    "The Lion King",
+    "Tarzan"
+  ]
+}

@@ -76,6 +76,54 @@ namespace Concept.ViewModels
                     },
                 }
             });
+
+            _conceptCategories.Add(new ConceptCategory()
+            {
+                DisplayName = "Disney Movies",
+                SubCategories = new List<ConceptCategory>()
+                {
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Golden Era (1937 to 1942)",
+                        FilePath = "disneyMovies/theGoldenEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Wartime Era (1942 to 1949)",
+                        FilePath = "disneyMovies/theWartimeEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Silver Era (1950 to 1967)",
+                        FilePath = "disneyMovies/theSilverEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Bronze Era (1970 to 1977)",
+                        FilePath = "disneyMovies/theBronzeEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Dark Ages (1981 to 1988)",
+                        FilePath = "disneyMovies/theDarkAges.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Renaissance Era (1989 to 1999)",
+                        FilePath = "disneyMovies/theRenaissanceEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Experimental Era (1999 to 2008)",
+                        FilePath = "disneyMovies/theExperimentalEra.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "The Revival Era (2009 to Present)",
+                        FilePath = "disneyMovies/theRevivalEra.json"
+                    },
+                }
+            });
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
