@@ -33,14 +33,14 @@
                             <MudListItem InitiallyExpanded="false">
                                 <ChildContent>
                                     <MudListItem Style="padding: 0px;">
-                                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
+                                        <MudSwitch onclick="@(() => UpdateChildren(ViewModel.ConceptCategories[index], ViewModel.ConceptCategories[index].Enabled))" @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
                                     </MudListItem>
                                 </ChildContent>                                                      
                                 <NestedList>
                                     @foreach (ConceptCategory conceptCategory in ViewModel.ConceptCategories[index].SubCategories)
                                     {
                                         <MudListItem>
-                                            <MudSwitch @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
+                                            <MudSwitch onclick="@(() => UpdateParent(ViewModel.ConceptCategories[index], @conceptCategory.DisplayName, @conceptCategory.Enabled))" @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
                                         </MudListItem>
                                     }                                    
                                 </NestedList>                                                   
@@ -61,5 +61,29 @@
     {
         isVisible = true;
         StateHasChanged();
+    }
+
+    private void UpdateChildren(ConceptCategory parentCategory, bool currentSate)
+    {
+        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
+        {
+            childCategory.Enabled = !currentSate;
+        }
+    }
+
+    private void UpdateParent(ConceptCategory parentCategory, string updatedSwitch, bool currentState)
+    {
+        bool enabled = !currentState;
+
+        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
+        {
+            if (enabled)
+                break;
+
+            if (childCategory.DisplayName != updatedSwitch)
+                enabled = childCategory.Enabled;
+        }
+
+        parentCategory.Enabled = enabled;
     }
 }
