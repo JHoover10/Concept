@@ -48,7 +48,32 @@ namespace Concept.ViewModels
                     {
                         DisplayName = "Generation 2",
                         FilePath = "pokemon/generation2.json"
-                    }
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 3",
+                        FilePath = "pokemon/generation3.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 4",
+                        FilePath = "pokemon/generation4.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 5",
+                        FilePath = "pokemon/generation5.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 6",
+                        FilePath = "pokemon/generation6.json"
+                    },
+                    new ConceptCategory()
+                    {
+                        DisplayName = "Generation 7",
+                        FilePath = "pokemon/generation7.json"
+                    },
                 }
             });
         }
