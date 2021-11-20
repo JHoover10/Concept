@@ -16,14 +16,38 @@
         </CascadingValue>
         <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
-                @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
-                {
-                    int index = i;
+                <MudList Clickable="false">
+                    @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
+                    {
+                        int index = i;
 
-                    <MudListItem>
-                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
-                    </MudListItem>
-                }
+                        if (ViewModel.ConceptCategories[index].SubCategories == null || !ViewModel.ConceptCategories[index].SubCategories.Any())
+                        {
+                            <MudListItem>
+                                <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
+                            </MudListItem>
+                        }
+                        else
+                        {
+                            @*TODO: See if there is a better way to do this*@
+                            <MudListItem InitiallyExpanded="false">
+                                <ChildContent>
+                                    <MudListItem Style="padding: 0px;">
+                                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
+                                    </MudListItem>
+                                </ChildContent>                                                      
+                                <NestedList>
+                                    @foreach (ConceptCategory conceptCategory in ViewModel.ConceptCategories[index].SubCategories)
+                                    {
+                                        <MudListItem>
+                                            <MudSwitch @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
+                                        </MudListItem>
+                                    }                                    
+                                </NestedList>                                                   
+                            </MudListItem>
+                        }                    
+                    }
+                </MudList>
             </MudPaper>
         </MudOverlay>
     </MudMainContent>
@@ -31,6 +55,7 @@
 
 @code {
     private bool isVisible;
+    public bool boolean { get; set; } = false;
 
     public void OpenSettings()
     {
