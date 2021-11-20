@@ -3,7 +3,7 @@
 @inject ConceptViewModel ViewModel
 
 <MudGrid Style="padding: 20px">
-    <MudItem xs="10">
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
@@ -23,10 +23,12 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="2">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentSatisfied" Size="Size.Large" /></MudPaper>
-    </MudItem>
-    <MudItem xs="10">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentSatisfied" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
@@ -46,10 +48,12 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="2">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentNeutral" Size="Size.Large" /></MudPaper>
-    </MudItem>
-    <MudItem xs="10">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentNeutral" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
                 <MudList Clickable="true">
@@ -69,9 +73,11 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="2">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentDissatisfied" Size="Size.Large" /></MudPaper>
-    </MudItem>
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentDissatisfied" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
 </MudGrid>
 
 <MudPaper Elevation="0" Class="d-flex justify-center" Style="padding-left: 20px; padding-right: 20px">
