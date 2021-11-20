@@ -57,6 +57,11 @@
     private bool isVisible;
     public bool boolean { get; set; } = false;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await ViewModel.AddConceptCategories();
+    }
+
     public void OpenSettings()
     {
         isVisible = true;
