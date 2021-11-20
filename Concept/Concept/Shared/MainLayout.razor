@@ -16,7 +16,7 @@
         </CascadingValue>
         <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
-                <MudList>
+                <MudList Clickable="false">
                     @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
                     {
                         int index = i;
@@ -29,14 +29,20 @@
                         }
                         else
                         {
-                            <MudListItem InitiallyExpanded="false" >
+                            @*TODO: See if there is a better way to do this*@
+                            <MudListItem InitiallyExpanded="false">
                                 <ChildContent>
-                                    <MudSwitch StopClickPropagation="false" @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
+                                    <MudListItem Style="padding: 0px;">
+                                        <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
+                                    </MudListItem>
                                 </ChildContent>                                                      
                                 <NestedList>
-                                    <MudListItem>
-                                        <MudSwitch StopClickPropagation="true" T="bool" Disabled="true" Color="Color.Primary" Label="Test" />
-                                    </MudListItem>
+                                    @foreach (ConceptCategory conceptCategory in ViewModel.ConceptCategories[index].SubCategories)
+                                    {
+                                        <MudListItem>
+                                            <MudSwitch @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
+                                        </MudListItem>
+                                    }                                    
                                 </NestedList>                                                   
                             </MudListItem>
                         }                    
@@ -49,6 +55,7 @@
 
 @code {
     private bool isVisible;
+    public bool boolean { get; set; } = false;
 
     public void OpenSettings()
     {
