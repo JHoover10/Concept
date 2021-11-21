@@ -1,50 +1,52 @@
 ﻿@page "/changeconcepts"
 
-<MudPaper Style="padding: 20px" Elevation="2">
-    <MudList Style="@_style" Dense="@_dense" Clickable="false">
-        @for (int i = 0; i < ConceptCategories.Count(); i++)
-        {
-            int index = i;
+<MudExpansionPanels Style="padding: 30px;" Dense="@_dense">
+    @for (int i = 0; i < ConceptCategories.Count(); i++)
+    {
+        int index = i;
 
-            if (ConceptCategories[index].SubCategories == null || !ConceptCategories[index].SubCategories.Any())
-            {
-                <MudListItem>
-                    <MudSwitch @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName" />
-                </MudListItem>
-            }
-            else
-            {
-                @*TODO: See if there is a better way to do this*@
-                <MudListItem InitiallyExpanded="false">
-                    <ChildContent>
-                        <MudListItem Style="padding: 0px;">
-                            <MudSwitch onclick="@(() => UpdateChildren(ConceptCategories[index], ConceptCategories[index].Enabled))" @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName"/>
-                        </MudListItem>
-                    </ChildContent>                                                      
-                    <NestedList>
-                        @foreach (ConceptCategory conceptCategory in ConceptCategories[index].SubCategories)
-                        {
-                            <MudListItem>
-                                <MudSwitch onclick="@(() => UpdateParent(ConceptCategories[index], @conceptCategory.DisplayName, @conceptCategory.Enabled))" @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
-                            </MudListItem>
-                        }                                    
-                    </NestedList>                                                   
-                </MudListItem>
-            }                    
+        if (ConceptCategories[index].SubCategories == null || !ConceptCategories[index].SubCategories.Any())
+        {
+            <MudExpansionPanel Disabled="true">
+                <TitleContent>
+                    <MudListItem Style="padding: 0px; width: 200px;">
+                        <MudSwitch @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName" />
+                    </MudListItem>
+                </TitleContent>
+            </MudExpansionPanel>
         }
-    </MudList>
-</MudPaper>
+        else
+        {
+            @*TODO: See if there is a better way to do this*@
+            <MudExpansionPanel>
+                <TitleContent>
+                    <MudListItem Style="padding: 0px; width: 200px;">
+                        <MudSwitch onclick="@(() => UpdateChildren(ConceptCategories[index], ConceptCategories[index].Enabled))" @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName" />
+                    </MudListItem>
+                </TitleContent>
+                <ChildContent>
+                    @foreach (ConceptCategory conceptCategory in ConceptCategories[index].SubCategories)
+                    {
+                        <MudListItem Inset="true" Style="padding: 0px;">
+                            <MudSwitch onclick="@(() => UpdateParent(ConceptCategories[index], @conceptCategory.DisplayName, @conceptCategory.Enabled))" @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
+                        </MudListItem>
+                    }
+                </ChildContent>
+            </MudExpansionPanel>
+        }
+    }
+</MudExpansionPanels>
 
 @code {
     private bool _dense = false;
     private string _style = string.Empty;
 
     [CascadingParameter]
-    public List<ConceptCategory> ConceptCategories { get; set; }   
+    public List<ConceptCategory> ConceptCategories { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        
+
     }
 
     private void UpdateChildren(ConceptCategory parentCategory, bool currentSate)
