@@ -11,7 +11,6 @@
             <MudText Typo="Typo.h5">Concept</MudText>
         </MudButton>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" OnClick="OpenSettings" />
         <CascadingValue Value="@ViewModel.ConceptCategories">
             <MudIconButton Icon="@Icons.Material.Filled.Book" Color="Color.Inherit" Edge="Edge.End" Link="changeconcepts" />
         </CascadingValue>
@@ -21,90 +20,12 @@
         <CascadingValue Value="@ViewModel.ConceptCategories">
             @Body
         </CascadingValue>
-        <MudOverlay @bind-Visible="_isVisible" DarkBackground="true" AutoClose="true">
-            <MudPaper Elevation="2">
-                <MudList Style="@_style" Dense="@_dense" Clickable="false">
-                    @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
-                    {
-                        int index = i;
-
-                        if (ViewModel.ConceptCategories[index].SubCategories == null || !ViewModel.ConceptCategories[index].SubCategories.Any())
-                        {
-                            <MudListItem>
-                                <MudSwitch @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName" />
-                            </MudListItem>
-                        }
-                        else
-                        {
-                            @*TODO: See if there is a better way to do this*@
-                            <MudListItem InitiallyExpanded="false">
-                                <ChildContent>
-                                    <MudListItem Style="padding: 0px;">
-                                        <MudSwitch onclick="@(() => UpdateChildren(ViewModel.ConceptCategories[index], ViewModel.ConceptCategories[index].Enabled))" @bind-Checked="@ViewModel.ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ViewModel.ConceptCategories[index].DisplayName"/>
-                                    </MudListItem>
-                                </ChildContent>                                                      
-                                <NestedList>
-                                    @foreach (ConceptCategory conceptCategory in ViewModel.ConceptCategories[index].SubCategories)
-                                    {
-                                        <MudListItem>
-                                            <MudSwitch onclick="@(() => UpdateParent(ViewModel.ConceptCategories[index], @conceptCategory.DisplayName, @conceptCategory.Enabled))" @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
-                                        </MudListItem>
-                                    }                                    
-                                </NestedList>                                                   
-                            </MudListItem>
-                        }                    
-                    }
-                </MudList>
-            </MudPaper>
-        </MudOverlay>
     </MudMainContent>
 </MudLayout>
 
 @code {
-    private bool _isVisible;
-    private bool _dense = false;
-    private string _style = string.Empty;
-
     protected override async Task OnInitializedAsync()
     {
         await ViewModel.AddConceptCategories();
-
-        WindowDimension windowDimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
-
-        if (windowDimension.Width < 400)
-        {
-            _style = $"width: {windowDimension.Width - 30}px;";
-            _dense = true;
-        }
-    }
-
-    public void OpenSettings()
-    {
-        _isVisible = true;
-        StateHasChanged();
-    }
-
-    private void UpdateChildren(ConceptCategory parentCategory, bool currentSate)
-    {
-        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
-        {
-            childCategory.Enabled = !currentSate;
-        }
-    }
-
-    private void UpdateParent(ConceptCategory parentCategory, string updatedSwitch, bool currentState)
-    {
-        bool enabled = !currentState;
-
-        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
-        {
-            if (enabled)
-                break;
-
-            if (childCategory.DisplayName != updatedSwitch)
-                enabled = childCategory.Enabled;
-        }
-
-        parentCategory.Enabled = enabled;
     }
 }
