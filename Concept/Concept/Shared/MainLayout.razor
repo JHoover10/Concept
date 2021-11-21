@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
+@inject IJSRuntime JSRuntime
 @inject MainLayoutViewModel ViewModel
 
 <MudThemeProvider />
@@ -14,9 +15,9 @@
         <CascadingValue Value="@ViewModel.ConceptCategories">
             @Body
         </CascadingValue>
-        <MudOverlay @bind-Visible="isVisible" DarkBackground="true" AutoClose="true">
+        <MudOverlay @bind-Visible="_isVisible" DarkBackground="true" AutoClose="true">
             <MudPaper Elevation="2">
-                <MudList Clickable="false">
+                <MudList Style="@_style" Dense="@_dense" Clickable="false">
                     @for (int i = 0; i < ViewModel.ConceptCategories.Count(); i++)
                     {
                         int index = i;
@@ -54,17 +55,26 @@
 </MudLayout>
 
 @code {
-    private bool isVisible;
-    public bool boolean { get; set; } = false;
+    private bool _isVisible;
+    private bool _dense = false;
+    private string _style = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         await ViewModel.AddConceptCategories();
+
+        WindowDimension windowDimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
+
+        if (windowDimension.Width < 400)
+        {
+            _style = $"width: {windowDimension.Width - 30}px;";
+            _dense = true;
+        }
     }
 
     public void OpenSettings()
     {
-        isVisible = true;
+        _isVisible = true;
         StateHasChanged();
     }
 

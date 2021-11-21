@@ -6,7 +6,7 @@
     <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Dense="@dense" Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -31,7 +31,7 @@
     <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Dense="@dense" Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -56,7 +56,7 @@
     <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Dense="@dense" Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -85,7 +85,7 @@
 </MudPaper>
 
 @code {
-    private bool dense { get; set; } = false;
+    private bool _dense { get; set; } = false;
 
     [CascadingParameter]
     public List<ConceptCategory> ConceptCategories { get; set; }   
@@ -95,7 +95,7 @@
         WindowDimension windowDimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
 
         if (windowDimension.Width < 400)
-            dense = true;
+            _dense = true;
     }
 
     private async Task CreateCard()
