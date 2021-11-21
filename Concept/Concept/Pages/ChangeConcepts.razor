@@ -1,0 +1,73 @@
+﻿@page "/changeconcepts"
+
+<MudPaper Style="padding: 20px" Elevation="2">
+    <MudList Style="@_style" Dense="@_dense" Clickable="false">
+        @for (int i = 0; i < ConceptCategories.Count(); i++)
+        {
+            int index = i;
+
+            if (ConceptCategories[index].SubCategories == null || !ConceptCategories[index].SubCategories.Any())
+            {
+                <MudListItem>
+                    <MudSwitch @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName" />
+                </MudListItem>
+            }
+            else
+            {
+                @*TODO: See if there is a better way to do this*@
+                <MudListItem InitiallyExpanded="false">
+                    <ChildContent>
+                        <MudListItem Style="padding: 0px;">
+                            <MudSwitch onclick="@(() => UpdateChildren(ConceptCategories[index], ConceptCategories[index].Enabled))" @bind-Checked="@ConceptCategories[index].Enabled" Color="Color.Primary" Label="@ConceptCategories[index].DisplayName"/>
+                        </MudListItem>
+                    </ChildContent>                                                      
+                    <NestedList>
+                        @foreach (ConceptCategory conceptCategory in ConceptCategories[index].SubCategories)
+                        {
+                            <MudListItem>
+                                <MudSwitch onclick="@(() => UpdateParent(ConceptCategories[index], @conceptCategory.DisplayName, @conceptCategory.Enabled))" @bind-Checked="@conceptCategory.Enabled" Color="Color.Primary" Label="@conceptCategory.DisplayName" />
+                            </MudListItem>
+                        }                                    
+                    </NestedList>                                                   
+                </MudListItem>
+            }                    
+        }
+    </MudList>
+</MudPaper>
+
+@code {
+    private bool _dense = false;
+    private string _style = string.Empty;
+
+    [CascadingParameter]
+    public List<ConceptCategory> ConceptCategories { get; set; }   
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private void UpdateChildren(ConceptCategory parentCategory, bool currentSate)
+    {
+        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
+        {
+            childCategory.Enabled = !currentSate;
+        }
+    }
+
+    private void UpdateParent(ConceptCategory parentCategory, string updatedSwitch, bool currentState)
+    {
+        bool enabled = !currentState;
+
+        foreach (ConceptCategory childCategory in parentCategory.SubCategories)
+        {
+            if (enabled)
+                break;
+
+            if (childCategory.DisplayName != updatedSwitch)
+                enabled = childCategory.Enabled;
+        }
+
+        parentCategory.Enabled = enabled;
+    }
+}
