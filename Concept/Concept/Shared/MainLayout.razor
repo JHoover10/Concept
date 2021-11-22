@@ -2,8 +2,9 @@
 
 @inject IJSRuntime JSRuntime
 @inject MainLayoutViewModel ViewModel
+@inject LocalDataStore LocalDataStore
 
-<MudThemeProvider Theme="currentTheme" />
+<MudThemeProvider Theme="_currentTheme" />
 
 <MudLayout>
     <MudAppBar Elevation="1">        
@@ -14,7 +15,7 @@
         <CascadingValue Value="@ViewModel.ConceptCategories">
             <MudIconButton Icon="@Icons.Material.Filled.Book" Color="Color.Inherit" Edge="Edge.End" Link="changeconcepts" />
         </CascadingValue>
-        <MudIconButton Icon="@themeIcon" Color="Color.Inherit" Edge="Edge.End" OnClick="DarkMode"/>
+        <MudIconButton Icon="@_themeIcon" Color="Color.Inherit" Edge="Edge.End" OnClick="DarkMode"/>
     </MudAppBar>
     <MudMainContent>
         <CascadingValue Value="@ViewModel.ConceptCategories">
@@ -24,9 +25,10 @@
 </MudLayout>
 
 @code {
-    string themeIcon = Icons.Material.Filled.DarkMode;
-    MudTheme currentTheme = new MudTheme();
-    MudTheme defaultTheme = new MudTheme()
+    private bool _isSynchronizing = false;
+    private string _themeIcon = Icons.Material.Filled.DarkMode;
+    private MudTheme _currentTheme = new MudTheme();
+    private MudTheme _defaultTheme = new MudTheme()
     {
         Palette = new Palette()
         {
@@ -34,7 +36,7 @@
         }
     };
 
-    MudTheme darkTheme = new MudTheme()
+    private MudTheme _darkTheme = new MudTheme()
     {
         Palette = new Palette()
         {
@@ -63,21 +65,39 @@
 
     protected override async Task OnInitializedAsync()
     {
-        currentTheme = defaultTheme;
+        _currentTheme = _defaultTheme;
+        
+        await Synchronize();
         await ViewModel.AddConceptCategories();
+    }
+
+    private async Task Synchronize()
+    {
+        _isSynchronizing = true;
+
+        try
+        {
+            await LocalDataStore.SynchronizeAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+
+        _isSynchronizing = false;
     }
 
     private void DarkMode()
     {
-        if (currentTheme == defaultTheme)
+        if (_currentTheme == _defaultTheme)
         {
-            currentTheme = darkTheme;
-            themeIcon = Icons.Material.Filled.LightMode;            
+            _currentTheme = _darkTheme;
+            _themeIcon = Icons.Material.Filled.LightMode;            
         }
         else
         {
-            currentTheme = defaultTheme;
-            themeIcon = Icons.Material.Filled.DarkMode;            
+            _currentTheme = _defaultTheme;
+            _themeIcon = Icons.Material.Filled.DarkMode;            
         }
     }
 }

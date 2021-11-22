@@ -1,4 +1,5 @@
-﻿using Concept.Models;
+﻿using Concept.Data;
+using Concept.Models;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Net.Http;
@@ -9,10 +10,9 @@ namespace Concept.ViewModels
 {
     public class MainLayoutViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;        
 
         private List<ConceptCategory> _conceptCategories = new List<ConceptCategory>();
-        private readonly HttpClient _httpClient;
 
         public List<ConceptCategory> ConceptCategories
         {
@@ -24,14 +24,16 @@ namespace Concept.ViewModels
             }
         }
 
-        public MainLayoutViewModel(HttpClient httpClient)
+        private readonly LocalDataStore _localDataStore;
+
+        public MainLayoutViewModel(LocalDataStore localDataStore)
         {
-            _httpClient = httpClient;
+            _localDataStore = localDataStore;
         }
 
         public async Task AddConceptCategories()
         {
-            List<ConceptCategory> conceptCategories = await _httpClient.GetFromJsonAsync<List<ConceptCategory>>("data/conceptCategories.json");
+            List<ConceptCategory> conceptCategories = await _localDataStore.GetAsync<List<ConceptCategory>>("metadata", "conceptCategories");
 
             _conceptCategories.AddRange(conceptCategories);
         }

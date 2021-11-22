@@ -1,4 +1,5 @@
-﻿using Concept.Models;
+﻿using Concept.Data;
+using Concept.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
@@ -60,11 +61,11 @@ namespace Concept.ViewModels
         }
 
         private const int _maxConceptsPerDifficulty = 3;
-        private HttpClient _httpClient;
+        private readonly LocalDataStore _localDataStore;
 
-        public ConceptViewModel(HttpClient httpClient)
+        public ConceptViewModel(LocalDataStore localDataStore)
         {
-            _httpClient = httpClient;
+            _localDataStore = localDataStore;
 
             for (int i = 0; i < _maxConceptsPerDifficulty; i++)
             {
@@ -76,7 +77,6 @@ namespace Concept.ViewModels
 
         public async Task UpdateConceptsAsync(List<ConceptCategory> conceptCategories)
         {
-
             List<string> concepts = new List<string>(_maxConceptsPerDifficulty * 3);
 
             Dictionary<string, List<string>> conceptsToChooseFrom = new Dictionary<string, List<string>>()
@@ -131,8 +131,7 @@ namespace Concept.ViewModels
             {
                 if (item.Enabled && (item.SubCategories == null || !item.SubCategories.Any()))
                 {
-                    HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/{item.FilePath}");
-                    JObject concepts = JsonConvert.DeserializeObject<JObject>(await responseMessage.Content.ReadAsStringAsync());
+                    JObject concepts = await _localDataStore.GetAsync<JObject>("ConceptCategories", item.FilePath);
 
                     conceptsToChooseFrom["Easy"].AddRange(concepts["Easy"].ToObject<List<string>>());
                     conceptsToChooseFrom["Medium"].AddRange(concepts["Medium"].ToObject<List<string>>());
