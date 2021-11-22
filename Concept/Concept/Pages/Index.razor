@@ -85,7 +85,7 @@
 </MudPaper>
 
 @code {
-    private bool _dense { get; set; } = false;
+    private bool _dense = false;
 
     [CascadingParameter]
     public List<ConceptCategory> ConceptCategories { get; set; }   
@@ -95,8 +95,8 @@
         WindowDimension windowDimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
 
         if (windowDimension.Width < 400)
-            _dense = true;
-    }
+            _dense = true;        
+    }    
 
     private async Task CreateCard()
     {

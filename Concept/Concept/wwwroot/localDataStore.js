@@ -3,7 +3,7 @@
     const db = idb.openDB('Concepts', 1, {
         upgrade(db) {
             db.createObjectStore('metadata');
-            db.createObjectStore('Default');
+            db.createObjectStore('ConceptCategories');
         },
     });
 

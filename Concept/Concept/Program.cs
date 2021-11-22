@@ -1,4 +1,5 @@
 using Concept;
+using Concept.Data;
 using Concept.ViewModels;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -12,5 +13,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddMudServices();
 builder.Services.AddScoped(typeof(ConceptViewModel));
 builder.Services.AddScoped(typeof(MainLayoutViewModel));
+builder.Services.AddScoped(typeof(LocalDataStore));
 
 await builder.Build().RunAsync();
