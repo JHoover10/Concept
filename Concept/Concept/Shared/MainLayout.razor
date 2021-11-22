@@ -67,8 +67,8 @@
     {
         _currentTheme = _defaultTheme;
         
-        await ViewModel.AddConceptCategories();
         await Synchronize();
+        await ViewModel.AddConceptCategories();
     }
 
     private async Task Synchronize()
@@ -77,7 +77,7 @@
 
         try
         {
-            await LocalDataStore.SynchronizeAsync(ViewModel.ConceptCategories);
+            await LocalDataStore.SynchronizeAsync();
         }
         catch (Exception ex)
         {

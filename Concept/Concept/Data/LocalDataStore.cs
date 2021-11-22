@@ -1,5 +1,7 @@
 ﻿using Concept.Models;
 using Microsoft.JSInterop;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace Concept.Data
 {
@@ -14,20 +16,43 @@ namespace Concept.Data
             _js = js;
         }
 
-        public async Task SynchronizeAsync(List<ConceptCategory> conceptCategories)
+        public async Task SynchronizeAsync()
         {
+            List<ConceptCategory>? conceptCategories = await _httpClient.GetFromJsonAsync<List<ConceptCategory>>("data/conceptCategories.json");
+
+            if (conceptCategories == null)
+                return;
+
+            HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/conceptCategories.json");
+            string content = await responseMessage.Content.ReadAsStringAsync();
+
+            await PutAsync("metadata", "conceptCategories", content);
+
             foreach (ConceptCategory concept in conceptCategories)
             {
                 if (concept.SubCategories == null || !concept.SubCategories.Any())
                 {
-                    HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/{concept.FilePath}");
-                    string concepts = await responseMessage.Content.ReadAsStringAsync();
+                    responseMessage = await _httpClient.GetAsync($"data/{concept.FilePath}");
+                    content = await responseMessage.Content.ReadAsStringAsync();
 
-                    await PutAsync("ConceptCategories", concept.FilePath, concepts);
+                    await PutAsync("ConceptCategories", concept.FilePath, content);
                 }
                 else
                     await AddSubCategories(concept.SubCategories);
             }
+        }
+
+        //TODO: See if this cannot be cleaned up and/or handle string type edge case for T which I think doesn't work
+        public async Task<T?> GetAsync<T>(string storeName, string key)
+        {
+            string value = await GetAsync<string>(storeName, (object)key);
+
+            if (string.IsNullOrWhiteSpace(value))
+                return default;
+
+            T result = JsonConvert.DeserializeObject<T>(value);
+
+            return result;
         }
 
         private async Task AddSubCategories(List<ConceptCategory> conceptCategories)
