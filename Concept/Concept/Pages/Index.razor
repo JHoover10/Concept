@@ -3,10 +3,10 @@
 @inject ConceptViewModel ViewModel
 
 <MudGrid Style="padding: 20px">
-    <MudItem xs="9">
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -23,13 +23,15 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="3">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentSatisfied" Size="Size.Small" /></MudPaper>
-    </MudItem>
-    <MudItem xs="9">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentSatisfied" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -46,13 +48,15 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="3">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentNeutral" Size="Size.Small" /></MudPaper>
-    </MudItem>
-    <MudItem xs="9">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentNeutral" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
+    <MudItem sm="10" xs="12">
         <MudItem xs="12">
             <MudPaper Elevation="2">
-                <MudList Clickable="true">
+                <MudList Dense="@_dense" Clickable="true">
                     @for (int i = 0; i < 3; i++)
                     {
                         int index = i;
@@ -69,9 +73,11 @@
             </MudPaper>
         </MudItem>
     </MudItem>
-    <MudItem xs="3">
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"><MudIcon Icon="@Icons.Material.Outlined.SentimentDissatisfied" Size="Size.Small" /></MudPaper>
-    </MudItem>
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudItem xs="2">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%; display: flex; align-items: center; justify-content: center;"><MudIcon Icon="@Icons.Material.Outlined.SentimentDissatisfied" Size="Size.Large" /></MudPaper>
+        </MudItem>
+    </MudHidden>
 </MudGrid>
 
 <MudPaper Elevation="0" Class="d-flex justify-center" Style="padding-left: 20px; padding-right: 20px">
@@ -79,10 +85,20 @@
 </MudPaper>
 
 @code {
-    [CascadingParameter]
-    public List<ConceptCategory> ConceptCategories { get; set; }
+    private bool _dense { get; set; } = false;
 
-    async Task CreateCard()
+    [CascadingParameter]
+    public List<ConceptCategory> ConceptCategories { get; set; }   
+
+    protected override async Task OnInitializedAsync()
+    {
+        WindowDimension windowDimension = await JSRuntime.InvokeAsync<WindowDimension>("getWindowDimensions");
+
+        if (windowDimension.Width < 400)
+            _dense = true;
+    }
+
+    private async Task CreateCard()
     {
         await ViewModel.UpdateConceptsAsync(ConceptCategories);
     }
