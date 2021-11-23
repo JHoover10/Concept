@@ -7,15 +7,19 @@
 <MudThemeProvider Theme="_currentTheme" />
 
 <MudLayout>
-    <MudAppBar Elevation="1">        
+    <MudAppBar Elevation="1">
         <MudButton Color="Color.Inherit" Link="/">
             <MudText Typo="Typo.h5">Concept</MudText>
         </MudButton>
         <MudSpacer />
         <CascadingValue Value="@ViewModel.ConceptCategories">
-            <MudIconButton Icon="@Icons.Material.Filled.Book" Color="Color.Inherit" Edge="Edge.End" Link="changeconcepts" />
+            <MudTooltip Text="Change concept categories">
+                <MudIconButton Icon="@Icons.Material.Filled.Book" Color="Color.Inherit" Edge="Edge.End" Link="changeconcepts" />
+            </MudTooltip>
         </CascadingValue>
-        <MudIconButton Icon="@_themeIcon" Color="Color.Inherit" Edge="Edge.End" OnClick="DarkMode"/>
+        <MudTooltip Text="Toggle light/dark theme">
+            <MudIconButton Icon="@_themeIcon" Color="Color.Inherit" Edge="Edge.End" OnClick="DarkMode" />
+        </MudTooltip>
     </MudAppBar>
     <MudMainContent>
         <CascadingValue Value="@ViewModel.ConceptCategories">
@@ -66,7 +70,7 @@
     protected override async Task OnInitializedAsync()
     {
         _currentTheme = _defaultTheme;
-        
+
         await Synchronize();
         await ViewModel.AddConceptCategories();
     }
@@ -92,12 +96,12 @@
         if (_currentTheme == _defaultTheme)
         {
             _currentTheme = _darkTheme;
-            _themeIcon = Icons.Material.Filled.LightMode;            
+            _themeIcon = Icons.Material.Filled.LightMode;
         }
         else
         {
             _currentTheme = _defaultTheme;
-            _themeIcon = Icons.Material.Filled.DarkMode;            
+            _themeIcon = Icons.Material.Filled.DarkMode;
         }
     }
 }
