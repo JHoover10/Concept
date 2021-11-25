@@ -32,7 +32,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        JObject yourConcepts = await LocalDataStore.GetAsync<JObject>("ConceptCategories", "yourConcepts") ?? new JObject();
+        JObject yourConcepts = await LocalDataStore.GetAsync<JObject>("ConceptCategories", "yours.json") ?? new JObject();
 
         _easyConcepts = string.Join('\n', yourConcepts["Easy"] ?? "");
         _mediumConcepts = string.Join('\n', yourConcepts["Medium"] ?? "");
@@ -48,6 +48,6 @@
 
         string dataToSave = JsonConvert.SerializeObject(yourConcepts);
 
-        await LocalDataStore.SaveAsync("ConceptCategories", "yourConcepts", dataToSave);
+        await LocalDataStore.SaveAsync("ConceptCategories", "yours.json", dataToSave);
     }
 }
