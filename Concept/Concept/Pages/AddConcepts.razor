@@ -2,27 +2,32 @@
 
 @inject LocalDataStore LocalDataStore
 
-<MudTabs Elevation="2" Centered="true" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+<MudTabs Elevation="2" Centered="true" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" @bind-ActivePanelIndex="_activeIndex">
     <MudTabPanel Text="Easy">
         <MudItem xs="12" sm="12" md="12">
-            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_easyConcepts" Lines="20" />
+            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_easyConcepts" Lines="15" />
         </MudItem>
     </MudTabPanel>
     <MudTabPanel Text="Medium">
         <MudItem xs="12" sm="12" md="12">
-            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_mediumConcepts" Lines="20" />
+            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_mediumConcepts" Lines="15" />
         </MudItem>
     </MudTabPanel>
     <MudTabPanel Text="Hard">
         <MudItem xs="12" sm="12" md="12">
-            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_hardConcepts" Lines="20" />
+            <MudTextField T="string" Variant="Variant.Outlined" @bind-Value="@_hardConcepts" Lines="15" />
         </MudItem>
     </MudTabPanel>
 </MudTabs>
 
-<MudPaper Elevation="0" Class="d-flex justify-center" Style="padding-left: 20px; padding-right: 20px">
-    <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="@SaveText">Save</MudButton>
-</MudPaper>
+<MudGrid Class="d-flex justify-center" Style="padding: 20px">
+    <MudItem xs="6">
+        <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="@SaveText">Save</MudButton>
+    </MudItem>
+    <MudItem xs="6">
+        <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="@ClearText">Clear</MudButton>
+    </MudItem>   
+</MudGrid>
 
 @code {
     private int _activeIndex = 0;
@@ -49,5 +54,15 @@
         string dataToSave = JsonConvert.SerializeObject(yourConcepts);
 
         await LocalDataStore.SaveAsync("ConceptCategories", "yours.json", dataToSave);
+    }
+
+    private void ClearText()
+    {
+        if (_activeIndex == 0)
+            _easyConcepts = string.Empty;
+        else if (_activeIndex == 1)
+            _mediumConcepts = string.Empty;
+        else
+            _hardConcepts = string.Empty;
     }
 }
