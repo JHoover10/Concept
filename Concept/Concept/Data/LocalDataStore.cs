@@ -55,6 +55,11 @@ namespace Concept.Data
             return result;
         }
 
+        public async Task SaveAsync<T>(string storeName, object key, T value)
+        {
+            await PutAsync<T>(storeName, key, value);
+        }
+
         private async Task AddSubCategories(List<ConceptCategory> conceptCategories)
         {
             foreach (ConceptCategory concept in conceptCategories)

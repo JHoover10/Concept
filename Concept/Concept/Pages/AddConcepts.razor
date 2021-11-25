@@ -1,5 +1,7 @@
 ﻿@page "/addconcepts"
 
+@inject LocalDataStore LocalDataStore
+
 <MudTabs Elevation="2" Centered="true" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
     <MudTabPanel Text="Easy">
         <MudItem xs="12" sm="12" md="12">
@@ -17,7 +19,10 @@
         </MudItem>
     </MudTabPanel>
 </MudTabs>
-<MudButton OnClick="@SaveText">Save</MudButton>
+
+<MudPaper Elevation="0" Class="d-flex justify-center" Style="padding-left: 20px; padding-right: 20px">
+    <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" OnClick="@SaveText">Save</MudButton>
+</MudPaper>
 
 @code {
     private int _activeIndex = 0;
@@ -25,8 +30,24 @@
     private string _mediumConcepts = string.Empty;
     private string _hardConcepts = string.Empty;
 
-    private void SaveText()
+    protected override async Task OnInitializedAsync()
     {
-        
+        JObject yourConcepts = await LocalDataStore.GetAsync<JObject>("ConceptCategories", "yourConcepts") ?? new JObject();
+
+        _easyConcepts = string.Join('\n', yourConcepts["Easy"] ?? "");
+        _mediumConcepts = string.Join('\n', yourConcepts["Medium"] ?? "");
+        _hardConcepts = string.Join('\n', yourConcepts["Hard"] ?? "");
+    }
+
+    private async Task SaveText()
+    {
+        JObject yourConcepts = new JObject();
+        yourConcepts.Add(new JProperty("Easy", _easyConcepts.Split("\n")));
+        yourConcepts.Add(new JProperty("Medium", _mediumConcepts.Split("\n")));
+        yourConcepts.Add(new JProperty("Hard", _hardConcepts.Split("\n")));
+
+        string dataToSave = JsonConvert.SerializeObject(yourConcepts);
+
+        await LocalDataStore.SaveAsync("ConceptCategories", "yourConcepts", dataToSave);
     }
 }
