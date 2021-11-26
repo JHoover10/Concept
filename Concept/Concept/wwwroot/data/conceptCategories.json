@@ -1,9 +1,28 @@
 [
   {
-    "DisplayName": "Default",
-    "FilePath": "default.json",
+    "DisplayName": "Defaults",
+    "FilePath": null,
     "Enabled": true,
-    "SubCategories": null
+    "SubCategories": [
+      {
+        "DisplayName": "Default",
+        "FilePath": "default.json",
+        "Enabled": true,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Yours",
+        "FilePath": "yours.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Dealers Choice",
+        "FilePath": "mine.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
   },
   {
     "DisplayName": "Pokemon",

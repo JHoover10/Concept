@@ -23,17 +23,17 @@ namespace Concept.Data
             if (conceptCategories == null)
                 return;
 
-            HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/conceptCategories.json");
-            string content = await responseMessage.Content.ReadAsStringAsync();
-
-            await PutAsync("metadata", "conceptCategories", content);
+            await PutAsync("metadata", "conceptCategories", JsonConvert.SerializeObject(conceptCategories));
 
             foreach (ConceptCategory concept in conceptCategories)
             {
+                if (concept.DisplayName == "Yours")
+                    continue;
+
                 if (concept.SubCategories == null || !concept.SubCategories.Any())
                 {
-                    responseMessage = await _httpClient.GetAsync($"data/{concept.FilePath}");
-                    content = await responseMessage.Content.ReadAsStringAsync();
+                    HttpResponseMessage responseMessage = await _httpClient.GetAsync($"data/{concept.FilePath}");
+                    string content = await responseMessage.Content.ReadAsStringAsync();
 
                     await PutAsync("ConceptCategories", concept.FilePath, content);
                 }
@@ -53,6 +53,11 @@ namespace Concept.Data
             T result = JsonConvert.DeserializeObject<T>(value);
 
             return result;
+        }
+
+        public async Task SaveAsync<T>(string storeName, object key, T value)
+        {
+            await PutAsync<T>(storeName, key, value);
         }
 
         private async Task AddSubCategories(List<ConceptCategory> conceptCategories)
