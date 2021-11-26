@@ -64,6 +64,9 @@ namespace Concept.Data
         {
             foreach (ConceptCategory concept in conceptCategories)
             {
+                if (concept.DisplayName == "Yours")
+                    continue;
+
                 if (concept.SubCategories == null || !concept.SubCategories.Any())
                 {
                     HttpResponseMessage? responseMessage = await _httpClient.GetAsync($"data/{concept.FilePath}");
