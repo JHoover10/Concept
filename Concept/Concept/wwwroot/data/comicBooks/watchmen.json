@@ -1,0 +1,13 @@
+{
+    "Easy":  [
+                 "Rorschach",
+                 "Nite Owl"
+             ],
+    "Hard":  [
+                 "Hooded Justice",
+                 "Captain Metropolis"
+             ],
+    "Medium":  [
+                   "Doctor Manhattan"
+               ]
+}

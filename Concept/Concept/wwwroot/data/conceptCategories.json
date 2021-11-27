@@ -25,6 +25,43 @@
     ]
   },
   {
+    "DisplayName": "Comic Books",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "The Boys",
+        "FilePath": "comicBooks/theBoys.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "DC",
+        "FilePath": "comicBooks/dc.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Marvel",
+        "FilePath": "comicBooks/marvel.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Invincible",
+        "FilePath": "comicBooks/invincible.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Watchmen",
+        "FilePath": "comicBooks/watchmen.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
     "DisplayName": "General",
     "FilePath": null,
     "Enabled": false,
@@ -38,31 +75,6 @@
       {
         "DisplayName": "Food and Drink",
         "FilePath": "general/foodAndDrink.json",
-        "Enabled": false,
-        "SubCategories": null
-      }
-    ]
-  },
-  {
-    "DisplayName": "TV Shows",
-    "FilePath": null,
-    "Enabled": false,
-    "SubCategories": [
-      {
-        "DisplayName": "General",
-        "FilePath": "tvShows/general.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Cartoon Network",
-        "FilePath": "tvShows/cartoonNetwork.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Nickelodeon",
-        "FilePath": "tvShows/nickelodeon.json",
         "Enabled": false,
         "SubCategories": null
       }
@@ -167,6 +179,31 @@
       {
         "DisplayName": "Generation 7",
         "FilePath": "pokemon/generation7.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "TV Shows",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "General",
+        "FilePath": "tvShows/general.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Cartoon Network",
+        "FilePath": "tvShows/cartoonNetwork.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Nickelodeon",
+        "FilePath": "tvShows/nickelodeon.json",
         "Enabled": false,
         "SubCategories": null
       }

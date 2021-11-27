@@ -1,0 +1,20 @@
+{
+    "Easy":  [
+                 "Angstrom",
+                 "Bulletproof",
+                 "Immortal",
+                 "Robot"
+             ],
+    "Hard":  [
+                 "Invincible",
+                 "Dupli-Kate",
+                 "Black Samson",
+                 "Rex Splode",
+                 "Allen the Alien",
+                 "Atom Eve",
+                 "Thokk"
+             ],
+    "Medium":  [
+
+               ]
+}
