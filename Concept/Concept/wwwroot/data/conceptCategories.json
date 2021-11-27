@@ -25,6 +25,31 @@
     ]
   },
   {
+    "DisplayName": "TV Shows",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "General",
+        "FilePath": "tvShows/general.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Cartoon Network",
+        "FilePath": "tvShows/cartoonNetwork.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Nickelodeon",
+        "FilePath": "tvShows/nickelodeon.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
     "DisplayName": "Pokemon",
     "FilePath": null,
     "Enabled": false,
