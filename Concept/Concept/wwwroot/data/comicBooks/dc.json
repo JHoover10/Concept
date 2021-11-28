@@ -1,0 +1,26 @@
+{
+    "Easy":  [
+                 "Batman",
+                 "Bane",
+                 "Batgirl",
+                 "Black Canary",
+                 "Cheetah",
+                 "Flash"
+             ],
+    "Hard":  [
+                 "Aquagirl",
+                 "Beast Boy",
+                 "Black Adam",
+                 "Catgirl",
+                 "Enchantress"
+             ],
+    "Medium":  [
+                   "Aquaman",
+                   "Adam Strange",
+                   "Batwomen",
+                   "Black Beetle",
+                   "Black Manta",
+                   "Blue Beetle",
+                   "Doomsday"
+               ]
+}

@@ -25,49 +25,99 @@
     ]
   },
   {
-    "DisplayName": "Pokemon",
+    "DisplayName": "Comic Books",
     "FilePath": null,
     "Enabled": false,
     "SubCategories": [
       {
-        "DisplayName": "Generation 1",
-        "FilePath": "pokemon/generation1.json",
+        "DisplayName": "The Boys",
+        "FilePath": "comicBooks/theBoys.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 2",
-        "FilePath": "pokemon/generation2.json",
+        "DisplayName": "DC",
+        "FilePath": "comicBooks/dc.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 3",
-        "FilePath": "pokemon/generation3.json",
+        "DisplayName": "Marvel",
+        "FilePath": "comicBooks/marvel.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 4",
-        "FilePath": "pokemon/generation4.json",
+        "DisplayName": "Invincible",
+        "FilePath": "comicBooks/invincible.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 5",
-        "FilePath": "pokemon/generation5.json",
+        "DisplayName": "Watchmen",
+        "FilePath": "comicBooks/watchmen.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "Fandoms",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Doctor Who",
+        "FilePath": "fandoms/doctorWho.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 6",
-        "FilePath": "pokemon/generation6.json",
+        "DisplayName": "Firefly",
+        "FilePath": "fandoms/firefly.json",
         "Enabled": false,
         "SubCategories": null
       },
       {
-        "DisplayName": "Generation 7",
-        "FilePath": "pokemon/generation7.json",
+        "DisplayName": "Game of Thrones",
+        "FilePath": "fandoms/gameOfThrones.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Harry Potter",
+        "FilePath": "fandoms/harryPotter.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Rick and Morty",
+        "FilePath": "fandoms/rickAndMorty.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Star Wars",
+        "FilePath": "fandoms/starWars.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "General",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Animals",
+        "FilePath": "general/animals.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Food and Drink",
+        "FilePath": "general/foodAndDrink.json",
         "Enabled": false,
         "SubCategories": null
       }
@@ -123,6 +173,86 @@
       {
         "DisplayName": "The Revival Era (2009 to Present)",
         "FilePath": "disneyMovies/theRevivalEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "Pokemon",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Generation 1",
+        "FilePath": "pokemon/generation1.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 2",
+        "FilePath": "pokemon/generation2.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 3",
+        "FilePath": "pokemon/generation3.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 4",
+        "FilePath": "pokemon/generation4.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 5",
+        "FilePath": "pokemon/generation5.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 6",
+        "FilePath": "pokemon/generation6.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Generation 7",
+        "FilePath": "pokemon/generation7.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "TV Shows",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "General",
+        "FilePath": "tvShows/general.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Anime",
+        "FilePath": "tvShows/anime.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Cartoon Network",
+        "FilePath": "tvShows/cartoonNetwork.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Nickelodeon",
+        "FilePath": "tvShows/nickelodeon.json",
         "Enabled": false,
         "SubCategories": null
       }

@@ -1,0 +1,48 @@
+{
+    "Easy":  [
+                 "First Doctor",
+                 "Rose Tyler",
+                 "The Master",
+                 "War Doctor",
+                 "Graham",
+                 "The Curator",
+                 "Second Doctor",
+                 "The Messenger",
+                 "Omega",
+                 "Sharon",
+                 "Sabbath",
+                 "Kevin"
+             ],
+    "Hard":  [
+                 "Twelfth Doctor",
+                 "Donna Noble",
+                 "Bill Potts",
+                 "Thirteenth Doctor",
+                 "Fugitive Doctor",
+                 "Ood Sigma",
+                 "Sally Sparrow",
+                 "Miss Evangelista",
+                 "Sixth Doctor",
+                 "Seventh Doctor",
+                 "Eighth Doctor",
+                 "The Valeyard",
+                 "Rassilon",
+                 "Shayde",
+                 "Timewyrm",
+                 "Hattie Munroe",
+                 "Eliza Jones"
+             ],
+    "Medium":  [
+                   "Eleventh Doctor",
+                   "Third Doctor",
+                   "Captain Jack Harkness",
+                   "Clara Oswald",
+                   "Fourth Doctor",
+                   "Fifth Doctor",
+                   "Ninth Doctor",
+                   "Tenth Doctor",
+                   "The Rani",
+                   "Jason Kane",
+                   "Pippa"
+               ]
+}
