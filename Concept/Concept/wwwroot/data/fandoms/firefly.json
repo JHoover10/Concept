@@ -1,0 +1,31 @@
+{
+    "Easy":  [
+                 "Badger",
+                 "Bester",
+                 "Blue Gloves",
+                 "Lenore",
+                 "Monty",
+                 "Ott",
+                 "Patience"
+             ],
+    "Hard":  [
+                 "Malcolm Reynolds",
+                 "Zoe Washburne",
+                 "Hoban Washburne",
+                 "Inara Serra",
+                 "Jayne Cobb",
+                 "Kaylee Frye",
+                 "Simon Tam",
+                 "River Tam",
+                 "Dr. Caron",
+                 "Fanty and Mingo",
+                 "Dr. Mathias",
+                 "Mr. Universe",
+                 "Tracey Smith",
+                 "Gabriel Tam"
+             ],
+    "Medium":  [
+                   "Jubal Early",
+                   "The Operative"
+               ]
+}

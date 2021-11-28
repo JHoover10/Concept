@@ -1,0 +1,39 @@
+{
+    "Easy":  [
+                 "Naruto",
+                 "One Piece",
+                 "Death Note",
+                 "Fullmetal Alchemist: Brotherhood",
+                 "Hunter x Hunter",
+                 "JoJo\u0027s Bizarre Adventure",
+                 "One Punch Man",
+                 "Samurai Champloo",
+                 "Psycho Pass",
+                 "Initial D",
+                 "Boruto",
+                 "Food Wars",
+                 "No Game No Life",
+                 "Dragon Ball Z",
+                 "Sword Art Online",
+                 "My Hero Academia",
+                 "Tokyo Ghoul",
+                 "Fairy Tail",
+                 "Kill la Kill",
+                 "Soul Eater",
+                 "Highschool of the Dead",
+                 "Black Clover",
+                 "Goblin Slayer",
+                 "Parasyte"
+             ],
+    "Hard":  [
+                 "Steins;Gate",
+                 "Cowboy Bebop",
+                 "Mononoke Hime",
+                 "Death Parade"
+             ],
+    "Medium":  [
+                   "Attack on Titan",
+                   "Mob Psycho",
+                   "Dr. Stone"
+               ]
+}

@@ -1,0 +1,44 @@
+{
+    "Easy":  [
+                 "Jessica",
+                 "Ethan",
+                 "Brad",
+                 "Unity",
+                 "Concerto",
+                 "Kendra"
+             ],
+    "Hard":  [
+                 "Rick Sanchez",
+                 "President Morty",
+                 "Jerry Smith",
+                 "Nancy",
+                 "Toby Matthews",
+                 "Tricia Lange",
+                 "Bruce Chutback",
+                 "Mr. Meeseeks",
+                 "Dr. Xenon Bloom",
+                 "Birdperson",
+                 "Squanchy",
+                 "Abradolf Lincler",
+                 "Mr. Poopybutthole",
+                 "Krombopulos Michael",
+                 "Arthricia",
+                 "Mr. Nimbus",
+                 "Vance Maximus",
+                 "Alan Rails",
+                 "Crocubot",
+                 "Million Ants",
+                 "Planetina",
+                 "Snuffles",
+                 "King Jellybean",
+                 "Zeep Xanflorp"
+             ],
+    "Medium":  [
+                   "Morty Smith",
+                   "Summer Smith",
+                   "Beth Smith",
+                   "Scary Terry",
+                   "Supernova",
+                   "Noob Noob"
+               ]
+}

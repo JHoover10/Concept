@@ -62,6 +62,49 @@
     ]
   },
   {
+    "DisplayName": "Fandoms",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Doctor Who",
+        "FilePath": "fandoms/doctorWho.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Firefly",
+        "FilePath": "fandoms/firefly.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Game of Thrones",
+        "FilePath": "fandoms/gameOfThrones.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Harry Potter",
+        "FilePath": "fandoms/harryPotter.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Rick and Morty",
+        "FilePath": "fandoms/rickAndMorty.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Star Wars",
+        "FilePath": "fandoms/starWars.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
     "DisplayName": "General",
     "FilePath": null,
     "Enabled": false,
@@ -192,6 +235,12 @@
       {
         "DisplayName": "General",
         "FilePath": "tvShows/general.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Anime",
+        "FilePath": "tvShows/anime.json",
         "Enabled": false,
         "SubCategories": null
       },
