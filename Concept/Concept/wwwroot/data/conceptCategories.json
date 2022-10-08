@@ -25,6 +25,25 @@
     ]
   },
   {
+    "DisplayName": "General",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Animals",
+        "FilePath": "general/animals.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Food and Drink",
+        "FilePath": "general/foodAndDrink.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
     "DisplayName": "Comic Books",
     "FilePath": null,
     "Enabled": false,
@@ -56,68 +75,6 @@
       {
         "DisplayName": "Watchmen",
         "FilePath": "comicBooks/watchmen.json",
-        "Enabled": false,
-        "SubCategories": null
-      }
-    ]
-  },
-  {
-    "DisplayName": "Fandoms",
-    "FilePath": null,
-    "Enabled": false,
-    "SubCategories": [
-      {
-        "DisplayName": "Doctor Who",
-        "FilePath": "fandoms/doctorWho.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Firefly",
-        "FilePath": "fandoms/firefly.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Game of Thrones",
-        "FilePath": "fandoms/gameOfThrones.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Harry Potter",
-        "FilePath": "fandoms/harryPotter.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Rick and Morty",
-        "FilePath": "fandoms/rickAndMorty.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Star Wars",
-        "FilePath": "fandoms/starWars.json",
-        "Enabled": false,
-        "SubCategories": null
-      }
-    ]
-  },
-  {
-    "DisplayName": "General",
-    "FilePath": null,
-    "Enabled": false,
-    "SubCategories": [
-      {
-        "DisplayName": "Animals",
-        "FilePath": "general/animals.json",
-        "Enabled": false,
-        "SubCategories": null
-      },
-      {
-        "DisplayName": "Food and Drink",
-        "FilePath": "general/foodAndDrink.json",
         "Enabled": false,
         "SubCategories": null
       }
@@ -173,6 +130,49 @@
       {
         "DisplayName": "The Revival Era (2009 to Present)",
         "FilePath": "disneyMovies/theRevivalEra.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
+  },
+  {
+    "DisplayName": "Fandoms",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Doctor Who",
+        "FilePath": "fandoms/doctorWho.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Firefly",
+        "FilePath": "fandoms/firefly.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Game of Thrones",
+        "FilePath": "fandoms/gameOfThrones.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Harry Potter",
+        "FilePath": "fandoms/harryPotter.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Rick and Morty",
+        "FilePath": "fandoms/rickAndMorty.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "Star Wars",
+        "FilePath": "fandoms/starWars.json",
         "Enabled": false,
         "SubCategories": null
       }
@@ -266,6 +266,12 @@
       {
         "DisplayName": "Dota 2",
         "FilePath": "videoGames/dota2.json",
+        "Enabled": false,
+        "SubCategories": null
+      },
+      {
+        "DisplayName": "League of Legends",
+        "FilePath": "videoGames/leagueOfLegends.json",
         "Enabled": false,
         "SubCategories": null
       }
