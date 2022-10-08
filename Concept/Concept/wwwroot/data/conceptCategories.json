@@ -257,5 +257,18 @@
         "SubCategories": null
       }
     ]
+  },
+  {
+    "DisplayName": "Video Games",
+    "FilePath": null,
+    "Enabled": false,
+    "SubCategories": [
+      {
+        "DisplayName": "Dota 2",
+        "FilePath": "videoGames/dota2.json",
+        "Enabled": false,
+        "SubCategories": null
+      }
+    ]
   }
 ]
